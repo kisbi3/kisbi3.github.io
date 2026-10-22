@@ -1474,5 +1474,141 @@
   "label.370": {
     "kind": "attribute",
     "value": "닫기"
+  },
+  "home.eyebrow": {
+    "kind": "text",
+    "value": "PHYSICS · FINANCIAL DATA · AI"
+  },
+  "home.explore": {
+    "kind": "text",
+    "value": "연구 살펴보기"
+  },
+  "home.email": {
+    "kind": "text",
+    "value": "이메일"
+  },
+  "home.filter-label": {
+    "kind": "text",
+    "value": "EXPLORE THE WORK"
+  },
+  "home.filter-aria": {
+    "kind": "text",
+    "value": "연구 및 프로젝트 분류"
+  },
+  "home.market": {
+    "kind": "text",
+    "value": "금융시장"
+  },
+  "home.physics": {
+    "kind": "text",
+    "value": "물리학"
+  },
+  "home.engineering": {
+    "kind": "text",
+    "value": "연구 도구 · 개발"
+  },
+  "home.work-kicker": {
+    "kind": "text",
+    "value": "SELECTED RESEARCH & ENGINEERING"
+  },
+  "home.work-title": {
+    "kind": "text",
+    "value": "질문에서 시작해, 연구와 도구로."
+  },
+  "home.all-outputs": {
+    "kind": "text",
+    "value": "전체 논문 · 발표"
+  },
+  "home.tag-market": {
+    "kind": "text",
+    "value": "FINANCIAL MARKETS"
+  },
+  "home.market-year": {
+    "kind": "text",
+    "value": "01 / RESEARCH · 2026"
+  },
+  "home.tag-physics": {
+    "kind": "text",
+    "value": "PARTICLE PHYSICS"
+  },
+  "home.physics-year": {
+    "kind": "text",
+    "value": "02 / RESEARCH · 2025"
+  },
+  "home.tag-mvp": {
+    "kind": "text",
+    "value": "FINANCIAL DATA · AI"
+  },
+  "home.mvp-year": {
+    "kind": "text",
+    "value": "03 / MVP EXPERIENCE"
+  },
+  "home.mvp-summary": {
+    "kind": "text",
+    "value": "규칙과 AI를 연결한 금융상품 탐색 MVP"
+  },
+  "home.tag-tools": {
+    "kind": "text",
+    "value": "RESEARCH TOOLS · IN DEVELOPMENT"
+  },
+  "home.tool-year": {
+    "kind": "text",
+    "value": "04 / ONGOING PROJECT"
+  },
+  "home.about-kicker": {
+    "kind": "text",
+    "value": "ABOUT / BACKGROUND"
+  },
+  "home.about-title": {
+    "kind": "text",
+    "value": "연구하는 사람, 김재성"
+  },
+  "home.brand": {
+    "kind": "text",
+    "value": "/ Research"
+  },
+  "home.nav-work": {
+    "kind": "text",
+    "value": "연구 · 개발"
+  },
+  "home.nav-about": {
+    "kind": "text",
+    "value": "소개"
+  },
+  "home.nav-papers": {
+    "kind": "text",
+    "value": "논문 · 발표"
+  },
+  "home.photo-title": {
+    "kind": "text",
+    "value": "밤하늘 배경 · Milky Way over Paranal"
+  },
+  "home.photo-author-url": {
+    "kind": "text",
+    "value": "https://www.albertoghizzipanizza.com"
+  },
+  "home.photo-credit": {
+    "kind": "text",
+    "value": "ESO/A. Ghizzi Panizza (www.albertoghizzipanizza.com)"
+  },
+  "home.photo-source-url": {
+    "kind": "text",
+    "value": "https://www.eso.org/public/images/dsc0565-cc/"
+  },
+  "home.photo-source": {
+    "kind": "text",
+    "value": "사진 출처"
+  },
+  "home.photo-license-url": {
+    "kind": "text",
+    "value": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "home.photo-license": {
+    "kind": "text",
+    "value": "CC BY 4.0"
+  },
+  "home.photo-change": {
+    "kind": "text",
+    "value": "크롭 · 용량 최적화"
   }
 }

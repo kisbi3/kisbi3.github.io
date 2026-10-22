@@ -10,6 +10,19 @@ def render(channel=None):
   b=p.chromium.launch(**options);page=b.new_page(viewport={'width':1440,'height':1000},device_scale_factor=1)
   errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
   page.goto((DIST/'index.html').as_uri());page.wait_for_function('window.Portfolio');page.evaluate('document.fonts.ready')
+  if page.locator('#research-home').count():
+   page.wait_for_timeout(900)
+   page.screenshot(path=str(QA/'home-desktop.png'))
+   for category,count in [('market',1),('physics',1),('engineering',2),('all',4)]:
+    page.locator('[data-home-filter="'+category+'"]').click()
+    assert page.locator('.work-entry:visible').count()==count
+   assert page.locator('.home-photo img').count()==1
+   assert page.locator('.hero-photo-credit a').count()==3
+   page.locator('#selected-work').evaluate('(el)=>scrollTo(0,el.offsetTop-76)');page.screenshot(path=str(QA/'home-gallery.png'))
+   for width in [1440,1024,768,390,360]:
+    page.set_viewport_size({'width':width,'height':844})
+    assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),width
+   page.set_viewport_size({'width':1440,'height':1000});page.evaluate('scrollTo(0,0)')
   page.screenshot(path=str(QA/'web-desktop.png'),full_page=True)
   assert page.evaluate('window.Portfolio.getState().pages')==12
   assert page.locator('#toc-list li').count()==12
@@ -18,6 +31,7 @@ def render(channel=None):
   links=page.locator('a[href]').evaluate_all('(xs)=>[...new Set(xs.map(x=>x.getAttribute("href")))]')
   missing=page.evaluate('''()=>Array.from(document.querySelectorAll('a[href^="#"]')).map(x=>x.getAttribute('href')).filter(h=>h.length>1&&!document.getElementById(h.slice(1)))''')
   assert not missing,missing
+  assert page.evaluate('''()=>{const ids=Array.from(document.querySelectorAll('[id]'),x=>x.id);return ids.length===new Set(ids).size}''')
   page.evaluate('window.Portfolio.setMode("deck")')
   bounds=[]
   for i,id in enumerate(ids):
