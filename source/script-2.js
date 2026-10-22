@@ -152,11 +152,27 @@
    const v=b.dataset.filter, scope=b.closest('#web-reading') || document.getElementById('pages');scope.querySelectorAll('[data-filter]').forEach(x=>{x.classList.toggle('selected',x===b);x.setAttribute('aria-pressed',String(x===b));});
    scope.querySelectorAll('.event').forEach(e=>e.hidden=!(v==='all'||e.dataset.kind===v||(v==='papers'&&['Publication','Preprint'].includes(e.dataset.kind))));
  }));
- document.querySelectorAll('.zoom-figure').forEach(b=>b.addEventListener('click',()=>{
-   const container=document.getElementById('figure-content');container.replaceChildren(b.querySelector('img').cloneNode(true));
-   const figcap=b.closest('figure').querySelector('figcaption');if(figcap){const p=document.createElement('p');p.innerHTML=figcap.innerHTML;container.append(p);}
+ function showGraphic(original, figcap) {
+   const container=document.getElementById('figure-content'), viewport=document.createElement('div');
+   viewport.className='figure-viewport';viewport.tabIndex=0;viewport.setAttribute('role','region');viewport.setAttribute('aria-label',figureDialog.dataset.panHint);
+   const copy=original.cloneNode(true), ids=new Map();
+   copy.querySelectorAll('[id]').forEach(n=>{ids.set(n.id,'figure-copy-'+n.id);n.id='figure-copy-'+n.id;});
+   copy.querySelectorAll('*').forEach(n=>Array.from(n.attributes).forEach(a=>{
+     let value=a.value;ids.forEach((next,prev)=>{value=value.replaceAll('url(#'+prev+')','url(#'+next+')');});
+     if(value!==a.value)n.setAttribute(a.name,value);
+   }));
+   viewport.append(copy);container.replaceChildren(viewport);
+   const hint=document.createElement('p');hint.className='figure-pan-hint';hint.textContent=figureDialog.dataset.panHint;container.prepend(hint);
+   if(figcap){const p=document.createElement('p');p.innerHTML=figcap.innerHTML;container.append(p);}
    figureDialog.showModal();
- }));
+ }
+ document.querySelectorAll('.zoom-figure').forEach(b=>b.addEventListener('click',()=>showGraphic(b.querySelector('img'),b.closest('figure').querySelector('figcaption'))));
+ document.querySelectorAll('#web-reading .diagram-scroll').forEach(view=>{
+   const svg=view.querySelector('svg');if(!svg)return;
+   view.tabIndex=0;view.setAttribute('role','button');view.setAttribute('aria-label',figureDialog.dataset.diagramLabel);
+   view.addEventListener('click',()=>showGraphic(svg,null));
+   view.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showGraphic(svg,null);}});
+ });
  window.addEventListener('resize',resize);
  window.addEventListener('hashchange',()=>{const i=getHashIndex();if(i>=0)gotoPage(i,false);});
  window.addEventListener('afterprint',restorePrint);

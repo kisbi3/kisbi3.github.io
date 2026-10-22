@@ -257,7 +257,7 @@
   },
   "sources.065": {
     "kind": "text",
-    "value": "CERTIFICATIONS"
+    "value": "CERTIFICATIONS & LANGUAGES"
   },
   "sources.066": {
     "kind": "text",
@@ -1513,7 +1513,7 @@
   },
   "home.work-title": {
     "kind": "text",
-    "value": "질문에서 시작해, 연구와 도구로."
+    "value": "연구·개발"
   },
   "home.all-outputs": {
     "kind": "text",
@@ -1618,5 +1618,21 @@
   "contexttrail.repo-label": {
     "kind": "text",
     "value": "GitHub 저장소 ↗"
+  },
+  "languages.toeic-name": {
+    "kind": "text",
+    "value": "TOEIC Speaking"
+  },
+  "languages.toeic-score": {
+    "kind": "text",
+    "value": "Advanced Low (Speaking Score 160)"
+  },
+  "ui.figure-pan-hint": {
+    "kind": "text",
+    "value": "큰 그림입니다. 작은 화면에서는 좌우로 이동해 확인하세요."
+  },
+  "ui.diagram-zoom": {
+    "kind": "text",
+    "value": "도식 크게 보기"
   }
 }
