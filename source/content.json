@@ -1275,10 +1275,6 @@
     "kind": "text",
     "value": "←"
   },
-  "deck-position.320": {
-    "kind": "text",
-    "value": "01 / 14"
-  },
   "fullscreen.321": {
     "kind": "text",
     "value": "전체화면"

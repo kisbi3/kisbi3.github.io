@@ -10,6 +10,7 @@ def verify():
  assert len(re.findall(r'class="page(?: |")',doc))==12
  assert not re.search(r'@@(?:CONTENT|ATTR|SVG|SVGWEB|ASSET|FILE):',doc)
  assert '2026.09' not in doc
+ assert ' / 14' not in doc
  # The archive contains only the completed publications/presentations appendix.
  assert 'id="appendix-diffusion"' not in doc and 'id="web-appendix-diffusion"' not in doc
  assert 'id="research-cycle"' not in doc and 'id="web-research-cycle"' not in doc
