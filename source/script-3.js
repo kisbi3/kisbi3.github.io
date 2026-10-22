@@ -1,0 +1,1 @@
+document.querySelectorAll('#pages a[href="#research"],#pages a[href="#physics"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const p=Array.from(document.querySelectorAll('#pages>.page'));window.Portfolio.gotoPage(p.findIndex(x=>'#'+x.id===a.getAttribute('href')));}));

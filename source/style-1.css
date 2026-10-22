@@ -1,0 +1,8 @@
+
+/* User requested compact contact/credential layout on slide 12. */
+.mode-deck .closing-grid{padding-top:16px!important;margin-top:8px!important;}
+.mode-deck .contact-card{margin-top:0!important;gap:4px!important;}
+.mode-deck .contact-card>strong{font-size:19px!important;}
+.mode-deck .contact-card a{font-size:14px!important;}
+.mode-deck .credential-row{font-size:14px!important;padding:6px 0!important;}
+.mode-deck .credential-row time{font-size:11px!important;}

@@ -1,0 +1,10 @@
+
+/* Make each paper identity unmistakable at its research introduction. */
+.mode-deck #research .paper-title,
+.mode-deck #physics .paper-title{font-size:36px!important;line-height:1.2!important;font-weight:700;letter-spacing:-.02em;max-width:1184px;margin-bottom:14px!important}
+#web-reading #web-research>.paper-title,
+#web-reading #web-physics>.paper-title{font-size:36px!important;line-height:1.25!important;font-weight:700;letter-spacing:-.02em;max-width:1120px;margin-bottom:20px!important}
+@media screen and (max-width:640px){
+#web-reading #web-research>.paper-title,
+#web-reading #web-physics>.paper-title{font-size:28px!important;line-height:1.3!important}
+}

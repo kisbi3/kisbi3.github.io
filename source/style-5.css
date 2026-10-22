@@ -1,0 +1,8 @@
+
+/* Readable slide footers and supporting notes. */
+.page-footer,
+.mode-deck .page-footer,
+body:not(.mode-deck):not([data-print]) .page-footer{font-size:14px;line-height:1.4}
+.mode-deck .archive-note{font-size:14px!important;line-height:1.45}
+.mode-deck .proof figcaption{font-size:16px;line-height:1.4}
+.mode-deck .small{font-size:19px!important}
