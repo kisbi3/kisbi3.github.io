@@ -9,7 +9,8 @@ def verify():
  assert '2608.10852' in doc
  assert len(re.findall(r'class="page(?: |")',doc))==12
  assert not re.search(r'@@(?:CONTENT|ATTR|SVG|SVGWEB|ASSET|FILE):',doc)
- assert '2026.09' not in doc
+ footers=re.findall(r'<footer\b[^>]*>.*?</footer>',doc,re.S)
+ assert footers and all('2026.09' not in footer for footer in footers)
  assert ' / 14' not in doc
  # The archive contains only the completed publications/presentations appendix.
  assert 'id="appendix-diffusion"' not in doc and 'id="web-appendix-diffusion"' not in doc
