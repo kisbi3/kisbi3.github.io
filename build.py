@@ -12,14 +12,13 @@ def build():
   if type=='FILE':return (SRC/key).read_text(encoding='utf8')
   if type=='ASSET':return assets[key]+','+base64.b64encode((SRC/'assets'/key).read_bytes()).decode()
   item=content[key];v=item['value']
-  if type in ['SVG','SVGWEB','SVGHOME']:
-   if type in ['SVGWEB','SVGHOME']:
+  if type in ['SVG','SVGWEB']:
+   if type=='SVGWEB':
     ids=re.findall(r'\bid="([^"]+)"',v)
-    prefix='home-copy-' if type=='SVGHOME' else 'web-copy-'
-    for id in ids:v=v.replace('id="'+id+'"','id="'+prefix+id+'"').replace('url(#'+id+')','url(#'+prefix+id+')')
+    for id in ids:v=v.replace('id="'+id+'"','id="web-copy-'+id+'"').replace('url(#'+id+')','url(#web-copy-'+id+')')
    return v
   return html.escape(v,quote=type=='ATTR') if item['kind']!='html' else v
- doc=re.sub(r'@@(CONTENT|ATTR|SVGHOME|SVGWEB|SVG|FILE|ASSET):([^@]+)@@',replace,doc)
+ doc=re.sub(r'@@(CONTENT|ATTR|SVGWEB|SVG|FILE|ASSET):([^@]+)@@',replace,doc)
  assert '@@CONTENT:' not in doc and '@@ASSET:' not in doc
  (OUT/'index.html').write_text(doc,encoding='utf8')
  (OUT/'slides.html').write_text(doc.replace('data-default-mode="web"','data-default-mode="deck"',1),encoding='utf8')

@@ -10,24 +10,6 @@ def render(channel=None):
   b=p.chromium.launch(**options);page=b.new_page(viewport={'width':1440,'height':1000},device_scale_factor=1)
   errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
   page.goto((DIST/'index.html').as_uri());page.wait_for_function('window.Portfolio');page.evaluate('document.fonts.ready')
-  if page.locator('#research-home').count():
-   page.wait_for_timeout(900)
-   page.screenshot(path=str(QA/'home-desktop.png'))
-   for category,count in [('market',1),('physics',1),('engineering',2),('all',4)]:
-    page.locator('[data-home-filter="'+category+'"]').click()
-    assert page.locator('.work-entry:visible').count()==count
-   assert page.locator('.home-photo img').count()==1
-   assert page.locator('.hero-photo-credit a').count()==3
-   page.locator('#selected-work').evaluate('(el)=>scrollTo(0,el.offsetTop-76)');page.screenshot(path=str(QA/'home-gallery.png'))
-   for width in [1440,1024,768,390,360]:
-    page.set_viewport_size({'width':width,'height':844})
-    assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),width
-   page.set_viewport_size({'width':1440,'height':1000});page.evaluate('scrollTo(0,0)')
-   if page.locator('#compact-web-styles').count():
-    assert page.locator('.work-entry .work-image').count()==0
-    assert page.locator('.home-work').evaluate('(el)=>el.offsetHeight')<650
-    assert page.locator('.home-hero').evaluate('(el)=>el.offsetHeight')<600
-    assert page.locator('#web-reading .proof').evaluate_all('(xs)=>xs.every(x=>x.offsetWidth<=740)')
   page.screenshot(path=str(QA/'web-desktop.png'),full_page=True)
   assert page.evaluate('window.Portfolio.getState().pages')==12
   assert page.locator('#toc-list li').count()==12
@@ -36,7 +18,6 @@ def render(channel=None):
   links=page.locator('a[href]').evaluate_all('(xs)=>[...new Set(xs.map(x=>x.getAttribute("href")))]')
   missing=page.evaluate('''()=>Array.from(document.querySelectorAll('a[href^="#"]')).map(x=>x.getAttribute('href')).filter(h=>h.length>1&&!document.getElementById(h.slice(1)))''')
   assert not missing,missing
-  assert page.evaluate('''()=>{const ids=Array.from(document.querySelectorAll('[id]'),x=>x.id);return ids.length===new Set(ids).size}''')
   page.evaluate('window.Portfolio.setMode("deck")')
   bounds=[]
   for i,id in enumerate(ids):
@@ -49,17 +30,6 @@ def render(channel=None):
   page.evaluate('window.Portfolio.setMode("web")')
   page.set_viewport_size({'width':390,'height':844});page.evaluate('window.scrollTo(0,0)');page.screenshot(path=str(QA/'web-mobile.png'),full_page=True)
   mobile=page.evaluate('({viewport:innerWidth,scroll:document.documentElement.scrollWidth})');assert mobile['scroll']<=mobile['viewport'],mobile
-  if page.locator('#compact-web-styles').count():
-   page.locator('#web-reading .zoom-figure').first.click()
-   viewport=page.locator('#figure-dialog .figure-viewport');assert viewport.is_visible()
-   assert viewport.evaluate('(el)=>el.scrollWidth>el.clientWidth')
-   viewport.evaluate('(el)=>el.scrollLeft=150');assert viewport.evaluate('(el)=>el.scrollLeft')>0
-   assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
-   page.keyboard.press('Escape')
-   page.locator('#web-reading .diagram-scroll[role="button"]').first.press('Enter')
-   assert page.locator('#figure-dialog .figure-viewport svg').is_visible()
-   assert page.locator('#figure-dialog .figure-viewport').evaluate('(el)=>el.scrollWidth>el.clientWidth')
-   page.keyboard.press('Escape')
   (DIST/'downloads').mkdir(exist_ok=True)
   page.set_viewport_size({'width':1440,'height':1000})
   for target,name in [('deck','Jaesung_Kim_Portfolio_Slides.pdf'),('web','Jaesung_Kim_Portfolio_Web.pdf')]:

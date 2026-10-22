@@ -52,8 +52,6 @@
   }
   function resetExport(copy) {
     copy.querySelectorAll('#web-reading details').forEach(d => d.removeAttribute('open'));
-    copy.querySelectorAll('[data-home-category]').forEach(n => n.removeAttribute('hidden'));
-    copy.querySelectorAll('[data-home-filter]').forEach(n => n.setAttribute('aria-pressed',String(n.dataset.homeFilter==='all')));
   }
   root.addEventListener('click', event => {
     const link = event.target.closest('a[data-web-page]');

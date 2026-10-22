@@ -122,3 +122,8 @@
 
 body[data-print=web] #web-reading .zoom-figure{height:var(--figure-print-height);width:100%}
 body[data-print=web] #web-reading .zoom-figure img{height:100%;width:100%;object-fit:contain}
+
+/* Spacing for the user-confirmed language result added to the original layout. */
+.language-credential{margin-top:7px!important}
+.mode-deck .sources .source-register .language-credential{font-size:15px;line-height:1.4}
+.mode-deck .sources .source-register .language-credential small{font-size:14px}
